@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://qg71k8633ohu"]
+[gd_scene load_steps=51 format=3 uid="uid://qg71k8633ohu"]
 
 [ext_resource type="Texture2D" uid="uid://bgwa3nwxky7vy" path="res://icon.svg" id="1_4shur"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_cxmdc"]
@@ -12,8 +12,11 @@
 [ext_resource type="Script" path="res://player/FSM/run.gd" id="5_gldm6"]
 [ext_resource type="Script" path="res://player/FSM/fly.gd" id="6_jxi8a"]
 [ext_resource type="Script" path="res://player/FSM/shoping.gd" id="7_fl3n4"]
+[ext_resource type="Texture2D" uid="uid://crqifssfnqja1" path="res://player/Sprites/Take Hit.png" id="7_fnqav"]
 [ext_resource type="Script" path="res://player/FSM/attack.gd" id="8_7ed5r"]
 [ext_resource type="PackedScene" uid="uid://cdijkxm2c646a" path="res://inventory/invent_ui.tscn" id="8_os6mb"]
+[ext_resource type="Script" path="res://scarecrow/front.gd" id="15_obobu"]
+[ext_resource type="Script" path="res://scarecrow/back.gd" id="16_ri1ue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c565i"]
 size = Vector2(70.7476, 114.838)
@@ -117,6 +120,22 @@ region = Rect2(1000, 66, 200, 66)
 [sub_resource type="AtlasTexture" id="AtlasTexture_clt4r"]
 atlas = ExtResource("2_mopan")
 region = Rect2(1200, 66, 200, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56u5p"]
+atlas = ExtResource("7_fnqav")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1isq"]
+atlas = ExtResource("7_fnqav")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14u6i"]
+atlas = ExtResource("7_fnqav")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2mvo"]
+atlas = ExtResource("7_fnqav")
+region = Rect2(600, 0, 200, 200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7aawx"]
 animations = [{
@@ -224,7 +243,32 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56u5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1isq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14u6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2mvo")
+}],
+"loop": false,
+"name": &"take_hit",
+"speed": 15.0
 }]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_1ntca"]
+a = Vector2(0, -20)
+b = Vector2(0.795532, 100.694)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vtv77"]
+a = Vector2(0, -14)
+b = Vector2(0, 106.694)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(68, 82)
@@ -240,7 +284,9 @@ shape = SubResource("RectangleShape2D_c565i")
 position = Vector2(17.6869, 59.2745)
 scale = Vector2(2.21992, 2.21992)
 sprite_frames = SubResource("SpriteFrames_7aawx")
-animation = &"fall"
+animation = &"take_hit"
+frame = 3
+frame_progress = 1.0
 speed_scale = 0.4
 
 [node name="FSM" type="Node" parent="."]
@@ -316,6 +362,30 @@ position = Vector2(74, 68)
 texture = ExtResource("1_4shur")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="hitbox_player" type="Node2D" parent="."]
+
+[node name="front_pl" type="Area2D" parent="hitbox_player"]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("15_obobu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_player/front_pl"]
+position = Vector2(66.3259, 11.8549)
+shape = SubResource("SegmentShape2D_1ntca")
+debug_color = Color(0, 0.521569, 0.298039, 0.419608)
+
+[node name="back_pl" type="Area2D" parent="hitbox_player"]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("16_ri1ue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_player/back_pl"]
+position = Vector2(-17.6869, 3.95163)
+shape = SubResource("SegmentShape2D_vtv77")
+debug_color = Color(0.733333, 0.227451, 0.235294, 0.419608)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="zone/def_attack" to="FSM/Attack" method="_on_area_2d_area_entered"]

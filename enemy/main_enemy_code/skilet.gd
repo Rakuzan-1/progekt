@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -400.0
 @onready var animation=$AnimatedSprite2D
 @onready var healthbar=$Healthbar
 @onready var skil = $"."
+@onready var def_attack =$zone/def_attack
 var player=CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var max_hp=100
@@ -53,6 +54,11 @@ func _physics_process(delta):
 	elif velocity.x<0:
 		animation.play("run")
 		animation.set_flip_h(true)
+		#flip zone
+	if animation.is_flipped_h():
+		def_attack.set_scale(Vector2(-1,1))
+	else:
+		def_attack.set_scale(Vector2(1,1))
 	move_and_slide()
 	check_down(velocity)
 func check_down(vel:Vector2):
@@ -94,3 +100,12 @@ func _on_timer_idle_timeout():
 func _on_animated_sprite_2d_animation_finished():
 	if health<=0:
 		skile.queue_free()
+
+
+func _on_def_attack_area_entered(area):
+	if area.name =="front_p" or area.name =="back_p" :
+		print("игрок зашел в зону атаки моба")
+	animation.play("attack")
+	if area.has_method("hit"):
+		area.hit()
+	#print(area.owner.name)
