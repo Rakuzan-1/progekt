@@ -465,9 +465,6 @@ one_shot = true
 [node name="Timerwandering" type="Timer" parent="."]
 one_shot = true
 
-[node name="zamah" type="Timer" parent="."]
-one_shot = true
-
 [node name="RayCastR" type="RayCast2D" parent="."]
 position = Vector2(53, 8)
 
