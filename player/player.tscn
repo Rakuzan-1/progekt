@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cdijkxm2c646a" path="res://inventory/invent_ui.tscn" id="8_os6mb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c565i"]
-size = Vector2(70.7476, 114.838)
+size = Vector2(247.617, 267.723)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qvbm"]
 atlas = ExtResource("2_xstfh")
@@ -233,12 +233,12 @@ collision_layer = 2
 script = ExtResource("1_cxmdc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(22.1086, 53.2266)
+position = Vector2(1273.46, 35.0707)
 shape = SubResource("RectangleShape2D_c565i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(21.2033, 59.7794)
-scale = Vector2(2.21992, 2.21992)
+position = Vector2(1304.41, 67.1777)
+scale = Vector2(5.0453, 4.42551)
 sprite_frames = SubResource("SpriteFrames_7aawx")
 animation = &"fall"
 speed_scale = 0.4
@@ -272,10 +272,10 @@ offset_bottom = 4.0
 
 [node name="VBox" type="VBoxContainer" parent="debag"]
 layout_mode = 0
-offset_left = 0.108627
-offset_top = -35.7908
-offset_right = 110.109
-offset_bottom = 52.2092
+offset_left = -22.0
+offset_top = -47.6457
+offset_right = 88.0004
+offset_bottom = 40.3543
 metadata/_edit_group_ = true
 
 [node name="state" type="Label" parent="debag/VBox"]
@@ -317,6 +317,7 @@ position = Vector2(74, 68)
 texture = ExtResource("1_4shur")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-75.1694, -493.954)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="zone/def_attack" to="FSM/Attack" method="_on_area_2d_area_entered"]
