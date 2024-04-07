@@ -508,6 +508,10 @@ sources/0 = SubResource("TileSetAtlasSource_tijw0")
 
 [node name="main" type="Node2D"]
 
+[node name="player" parent="." instance=ExtResource("1_rk3dw")]
+position = Vector2(34, 771)
+scale = Vector2(0.385227, 0.441004)
+
 [node name="swich" parent="." instance=ExtResource("2_yix3g")]
 position = Vector2(1787, 837)
 dist_scene = "shop"
@@ -534,7 +538,3 @@ layer_4/tile_data = PackedInt32Array(3670083, 1114116, 9, 3735619, 1114116, 9, 3
 
 [node name="Skilet" parent="." instance=ExtResource("6_8wd6x")]
 position = Vector2(249, 812)
-
-[node name="player" parent="." instance=ExtResource("1_rk3dw")]
-position = Vector2(439, 727)
-scale = Vector2(0.385227, 0.441004)

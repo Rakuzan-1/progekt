@@ -437,13 +437,11 @@ a = Vector2(0, -14)
 b = Vector2(0, 46)
 
 [node name="Skilet" type="CharacterBody2D"]
-texture_filter = 1
 collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_pbna6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 position = Vector2(17, 10)
 scale = Vector2(1.525, 1.525)
 sprite_frames = SubResource("SpriteFrames_1i6sv")
@@ -465,9 +463,6 @@ offset_bottom = -12.0
 one_shot = true
 
 [node name="Timerwandering" type="Timer" parent="."]
-one_shot = true
-
-[node name="zamah" type="Timer" parent="."]
 one_shot = true
 
 [node name="RayCastR" type="RayCast2D" parent="."]

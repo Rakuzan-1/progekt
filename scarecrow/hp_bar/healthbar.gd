@@ -15,6 +15,8 @@ func _set_health(new_health):
 		timer.start()
 	#else: # Удаляем эту строку, она вызывает ошибку
 func init_health(_health: int):
+	#if _health>health:
+		#queue_free()
 	health = _health
 	max_value = health
 	value = health

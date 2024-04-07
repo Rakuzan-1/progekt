@@ -21,14 +21,15 @@ func inner_physics_process(_delta):
 		state_machine.change_to("Fly",{do_jump = true})
 	if Input.is_action_just_pressed("Attack"):
 		state_machine.change_to("Attack")	
-
+	
 	if player.velocity.x>0:
 		player.animation.play("run")
 		player.animation.set_flip_h(false)
 	elif player.velocity.x<0:
 		player.animation.play("run")
 		player.animation.set_flip_h(true)
-
+	if player.taken_hit==true:
+		state_machine.change_to("take_hit")
 
 
 

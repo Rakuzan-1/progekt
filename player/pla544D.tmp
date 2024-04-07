@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://qg71k8633ohu"]
+[gd_scene load_steps=51 format=3 uid="uid://qg71k8633ohu"]
 
 [ext_resource type="Texture2D" uid="uid://bgwa3nwxky7vy" path="res://icon.svg" id="1_4shur"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_cxmdc"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dh24twomprq7f" path="res://player/Sprites/Attack1.png" id="2_xstfh"]
 [ext_resource type="Texture2D" uid="uid://hq153alw37ds" path="res://player/Sprites/Fall.png" id="3_3wr3v"]
 [ext_resource type="Script" path="res://player/FSM/FSM.gd" id="3_vuo2o"]
-[ext_resource type="Texture2D" uid="uid://bhcc3gifrjvyw" path="res://player/Sprites/Death.png" id="3_wfokc"]
 [ext_resource type="Script" path="res://player/FSM/idle.gd" id="4_2pxys"]
 [ext_resource type="Texture2D" uid="uid://cf5v1ptfqhfet" path="res://player/Sprites/Idle.png" id="4_e36eq"]
 [ext_resource type="Script" path="res://player/FSM/run.gd" id="5_gldm6"]
@@ -16,11 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://crqifssfnqja1" path="res://player/Sprites/Take Hit.png" id="7_fnqav"]
 [ext_resource type="Script" path="res://player/FSM/attack.gd" id="8_7ed5r"]
 [ext_resource type="PackedScene" uid="uid://cdijkxm2c646a" path="res://inventory/invent_ui.tscn" id="8_os6mb"]
-[ext_resource type="Script" path="res://player/FSM/take_hit.gd" id="14_56asx"]
-[ext_resource type="Script" path="res://player/FSM/die.gd" id="15_1otmv"]
 [ext_resource type="Script" path="res://player/front_pl.gd" id="16_mkwxl"]
 [ext_resource type="Script" path="res://player/back_pl.gd" id="17_mwldn"]
-[ext_resource type="PackedScene" uid="uid://di3l5a3t65ftb" path="res://scarecrow/hp_bar/healthbar.tscn" id="18_5y41x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c565i"]
 size = Vector2(70.7476, 114.838)
@@ -48,30 +44,6 @@ region = Rect2(1000, 0, 200, 200)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yi7a4"]
 atlas = ExtResource("2_xstfh")
 region = Rect2(800, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lm5ef"]
-atlas = ExtResource("3_wfokc")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_83so2"]
-atlas = ExtResource("3_wfokc")
-region = Rect2(200, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wg8bb"]
-atlas = ExtResource("3_wfokc")
-region = Rect2(400, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyx44"]
-atlas = ExtResource("3_wfokc")
-region = Rect2(600, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ewtjo"]
-atlas = ExtResource("3_wfokc")
-region = Rect2(800, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wywtt"]
-atlas = ExtResource("3_wfokc")
-region = Rect2(1000, 0, 200, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ij3y"]
 atlas = ExtResource("3_3wr3v")
@@ -192,29 +164,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lm5ef")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_83so2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wg8bb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tyx44")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ewtjo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wywtt")
-}],
-"loop": false,
-"name": &"die",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8ij3y")
 }, {
 "duration": 1.0,
@@ -309,7 +258,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_l2mvo")
 }],
 "loop": false,
-"name": &"takehit",
+"name": &"take_hit",
 "speed": 15.0
 }]
 
@@ -332,12 +281,11 @@ position = Vector2(22.1086, 53.2266)
 shape = SubResource("RectangleShape2D_c565i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 position = Vector2(17.6869, 59.2745)
 scale = Vector2(2.21992, 2.21992)
 sprite_frames = SubResource("SpriteFrames_7aawx")
-animation = &"die"
-frame = 5
+animation = &"take_hit"
+frame = 3
 frame_progress = 1.0
 speed_scale = 0.4
 
@@ -359,12 +307,6 @@ script = ExtResource("7_fl3n4")
 
 [node name="Attack" type="Node" parent="FSM"]
 script = ExtResource("8_7ed5r")
-
-[node name="take_hit" type="Node" parent="FSM"]
-script = ExtResource("14_56asx")
-
-[node name="die" type="Node" parent="FSM"]
-script = ExtResource("15_1otmv")
 
 [node name="debag" type="Control" parent="."]
 layout_mode = 3
@@ -419,6 +361,8 @@ visible = false
 position = Vector2(74, 68)
 texture = ExtResource("1_4shur")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="hitbox_player" type="Node2D" parent="."]
 
 [node name="front_pl" type="Area2D" parent="hitbox_player"]
@@ -443,22 +387,7 @@ position = Vector2(-17.6869, 3.95163)
 shape = SubResource("SegmentShape2D_yo83u")
 debug_color = Color(0.733333, 0.227451, 0.235294, 0.419608)
 
-[node name="Healthbar" parent="." instance=ExtResource("18_5y41x")]
-offset_left = -1203.0
-offset_top = -498.0
-offset_right = -571.0
-offset_bottom = -466.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.93, 1.93)
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.505
-one_shot = true
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/Attack" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="FSM/die" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="zone/def_attack" to="FSM/Attack" method="_on_area_2d_area_entered"]
 
 [editable path="Invent_UI"]
