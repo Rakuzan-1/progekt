@@ -1081,4 +1081,4 @@ layer_0/tile_data = PackedInt32Array(1114070, 65539, 60, 1114071, 65539, 63, 111
 layer_1/tile_data = PackedInt32Array()
 
 [node name="player" parent="." instance=ExtResource("3_skhof")]
-position = Vector2(-168, 206)
+position = Vector2(-291, 211)
