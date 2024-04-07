@@ -11,4 +11,4 @@ func _process(_delta):
 	pass
 func hit():
 	print(str(owner.name))
-	owner.take_hit(22)
+	owner.take_hit(5)

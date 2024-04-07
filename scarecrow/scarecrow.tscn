@@ -45,6 +45,7 @@ a = Vector2(0, -14)
 b = Vector2(0, 46)
 
 [node name="scarecrow" type="CharacterBody2D"]
+texture_filter = 1
 collision_layer = 4
 script = ExtResource("1_ujvig")
 
@@ -70,6 +71,7 @@ shape = SubResource("RectangleShape2D_d7dex")
 [node name="hitbox" type="Node2D" parent="."]
 
 [node name="front" type="Area2D" parent="hitbox"]
+texture_filter = 1
 collision_layer = 16
 collision_mask = 0
 monitoring = false

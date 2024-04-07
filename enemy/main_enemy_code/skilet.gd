@@ -129,14 +129,16 @@ func _on_animated_sprite_2d_animation_finished():
 var alrady_hit=false
 func _on_def_attack_area_entered(area):
 	if area.name=="front_pl" or area.name=="back_pl":
-		area_att=true
-		state=zamah
+		#area_att=true
+		
 		#animation.play("attack")
-		if not alrady_hit:
-			if area.has_method("hit"):
-				area.hit()
-			print(area.owner.name)
-		alrady_hit=true
+		#if not alrady_hit:
+			#if area.has_method("hit"):
+		area.hit()
+		print("имя кого он бъет"+area.name)
+		
+		state=zamah
+		#alrady_hit=true
 	elif area_att==false:
 		state=idle	
 	#print(area.name)

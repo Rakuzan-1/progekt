@@ -11,4 +11,4 @@ func _process(_delta):
 
 func hit():
 	print("hit"+str(owner.name))
-	#plat.take_hit(12)
+	owner.take_hit(26)
