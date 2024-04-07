@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://svfxlp2unkio"]
+
+[ext_resource type="Script" path="res://player/FSM/swich.gd" id="1_f1xtd"]
+[ext_resource type="Texture2D" uid="uid://dgm4aavmxf8ut" path="res://texture/frog.png" id="2_utsvk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w50v1"]
+radius = 23.3452
+
+[node name="swich" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_f1xtd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -14.0
+offset_top = -0.999999
+offset_right = 51.0
+offset_bottom = 64.0
+rotation = -0.240571
+texture = ExtResource("2_utsvk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(22, 19)
+shape = SubResource("CircleShape2D_w50v1")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(16, 21)
+rotation = -0.0278433
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

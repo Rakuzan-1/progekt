@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=3 uid="uid://hjrgnksavhat"]
+
+[ext_resource type="Script" path="res://scarecrow/scarecrow.gd" id="1_ujvig"]
+[ext_resource type="Texture2D" uid="uid://wgumtleoak4q" path="res://scarecrow/Scarecrow1.png" id="2_w1rkb"]
+[ext_resource type="Texture2D" uid="uid://dir1xq3uypo23" path="res://scarecrow/Scarecrow2.png" id="3_ukbxe"]
+[ext_resource type="Texture2D" uid="uid://d2eeo28bxajuu" path="res://scarecrow/Scarecrow3.png" id="4_gs281"]
+[ext_resource type="Texture2D" uid="uid://dq7ss8s625lhc" path="res://scarecrow/Scarecrow4.png" id="5_itwr3"]
+[ext_resource type="Texture2D" uid="uid://tu2ju6gkof7t" path="res://scarecrow/Scarecrow5.png" id="6_dognu"]
+[ext_resource type="Script" path="res://scarecrow/front.gd" id="7_wv61h"]
+[ext_resource type="Script" path="res://scarecrow/back.gd" id="8_lko6j"]
+[ext_resource type="PackedScene" uid="uid://di3l5a3t65ftb" path="res://scarecrow/hp_bar/healthbar.tscn" id="9_727qn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_thb4q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w1rkb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ukbxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gs281")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_itwr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dognu")
+}],
+"loop": false,
+"name": &"take_hit",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7dex"]
+size = Vector2(48.5, 66.5)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8j5bs"]
+a = Vector2(0, -20)
+b = Vector2(0, 42)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ujvoh"]
+a = Vector2(0, -14)
+b = Vector2(0, 46)
+
+[node name="scarecrow" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_ujvig")
+
+[node name="Healthbar" parent="." instance=ExtResource("9_727qn")]
+offset_left = -11.0
+offset_top = -31.0
+offset_right = 54.0
+offset_bottom = -27.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(14.0094, 11.75)
+scale = Vector2(1.51887, 1.51887)
+sprite_frames = SubResource("SpriteFrames_thb4q")
+animation = &"take_hit"
+frame = 4
+frame_progress = 1.0
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18, 16)
+shape = SubResource("RectangleShape2D_d7dex")
+
+[node name="hitbox" type="Node2D" parent="."]
+
+[node name="front" type="Area2D" parent="hitbox"]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("7_wv61h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/front"]
+position = Vector2(39, 6)
+shape = SubResource("SegmentShape2D_8j5bs")
+debug_color = Color(0, 0.521569, 0.298039, 0.419608)
+
+[node name="back" type="Area2D" parent="hitbox"]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_lko6j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/back"]
+shape = SubResource("SegmentShape2D_ujvoh")
+debug_color = Color(0.733333, 0.227451, 0.235294, 0.419608)
+
+[node name="attack" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -57.0
+offset_right = 33.0
+offset_bottom = -31.0
+
+[node name="dmg" type="Label" parent="."]
+offset_left = -1.0
+offset_top = -42.0
+offset_right = 39.0
+offset_bottom = -19.0

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://qg71k8633ohu"]
+
+[ext_resource type="Texture2D" uid="uid://bgwa3nwxky7vy" path="res://icon.svg" id="1_4shur"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_cxmdc"]
+[ext_resource type="Script" path="res://player/FSM/FSM.gd" id="3_vuo2o"]
+[ext_resource type="Script" path="res://player/FSM/idle.gd" id="4_2pxys"]
+[ext_resource type="Script" path="res://player/FSM/run.gd" id="5_gldm6"]
+[ext_resource type="Script" path="res://player/FSM/fly.gd" id="6_jxi8a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c565i"]
+size = Vector2(116, 121)
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(78, 61)
+scale = Vector2(0.226156, 0.25306)
+script = ExtResource("1_cxmdc")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(73, 68.5)
+shape = SubResource("RectangleShape2D_c565i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(74, 68)
+texture = ExtResource("1_4shur")
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_vuo2o")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("4_2pxys")
+
+[node name="Run" type="Node" parent="FSM"]
+script = ExtResource("5_gldm6")
+
+[node name="Fly" type="Node" parent="FSM"]
+script = ExtResource("6_jxi8a")

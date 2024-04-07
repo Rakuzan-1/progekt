@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://c42vo3s22yol2"
+path="res://.godot/imported/froge_shop.dialogue-bbd36869c1e9d4d3814527a04c88ce50.tres"
+
+[deps]
+
+source_file="res://dialoge/froge_shop.dialogue"
+dest_files=["res://.godot/imported/froge_shop.dialogue-bbd36869c1e9d4d3814527a04c88ce50.tres"]
+
+[params]
+
+defaults=true
