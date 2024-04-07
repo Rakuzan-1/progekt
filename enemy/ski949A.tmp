@@ -2,9 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://iufecjom8tr6" path="res://enemy/main_enemy/NightBorne.png" id="1_7k562"]
 [ext_resource type="Script" path="res://enemy/main_enemy_code/skilet.gd" id="1_pbna6"]
-[ext_resource type="Script" path="res://scarecrow/front.gd" id="4_vxskr"]
-[ext_resource type="Script" path="res://scarecrow/back.gd" id="5_01ecy"]
+[ext_resource type="Script" path="res://enemy/main_enemy_code/front.gd" id="3_x6h8e"]
+[ext_resource type="Script" path="res://enemy/main_enemy_code/back.gd" id="4_vden5"]
 [ext_resource type="PackedScene" uid="uid://di3l5a3t65ftb" path="res://scarecrow/hp_bar/healthbar.tscn" id="5_4a6d8"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_h082n"]
+a = Vector2(0, -9)
+b = Vector2(0, 30)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_tgr0p"]
+a = Vector2(0, -6)
+b = Vector2(0, 33)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7kxa1"]
 atlas = ExtResource("1_7k562")
@@ -426,26 +434,41 @@ size = Vector2(30.0625, 42.625)
 size = Vector2(559, 74)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i2144"]
-size = Vector2(352.813, 30.4375)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_8j5bs"]
-a = Vector2(0, -20)
-b = Vector2(0, 42)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_ujvoh"]
-a = Vector2(0, -14)
-b = Vector2(0, 46)
+size = Vector2(492.5, 107.5)
 
 [node name="Skilet" type="CharacterBody2D"]
 collision_layer = 5
-collision_mask = 3
 script = ExtResource("1_pbna6")
 
+[node name="hitbox" type="Node2D" parent="."]
+
+[node name="front" type="Area2D" parent="hitbox"]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+script = ExtResource("3_x6h8e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox/front"]
+position = Vector2(8, 13)
+shape = SubResource("SegmentShape2D_h082n")
+debug_color = Color(0.921569, 0.278431, 0.117647, 0.419608)
+
+[node name="back" type="Area2D" parent="hitbox"]
+collision_layer = 0
+collision_mask = 16
+monitoring = false
+script = ExtResource("4_vden5")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hitbox/back"]
+position = Vector2(40, 11)
+shape = SubResource("SegmentShape2D_tgr0p")
+debug_color = Color(0.0352941, 0.635294, 0.392157, 0.419608)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(17, 10)
+position = Vector2(18, 9)
 scale = Vector2(1.525, 1.525)
 sprite_frames = SubResource("SpriteFrames_1i6sv")
-animation = &"attack"
+animation = &"hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(24, 26)
@@ -470,66 +493,33 @@ position = Vector2(53, 8)
 position = Vector2(-10, 8)
 
 [node name="exitzone" type="Area2D" parent="."]
-collision_mask = 3
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exitzone"]
 position = Vector2(23, 21)
 shape = SubResource("RectangleShape2D_o6xr4")
 
 [node name="detectivezone" type="Area2D" parent="."]
-collision_mask = 3
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detectivezone"]
-position = Vector2(19.5938, 24.2188)
+position = Vector2(25, 26)
 shape = SubResource("RectangleShape2D_i2144")
 debug_color = Color(0.862745, 0.329412, 0.372549, 0.419608)
 
 [node name="dmg" type="Label" parent="."]
-offset_left = 15.0
-offset_top = -57.0
-offset_right = 40.0
-offset_bottom = -34.0
+offset_left = -1.0
+offset_top = -42.0
+offset_right = 39.0
+offset_bottom = -19.0
 
-[node name="hitbox2" type="Node2D" parent="."]
+[node name="attack" type="Label" parent="."]
+offset_left = -34.0
+offset_top = -52.0
+offset_right = 110.0
+offset_bottom = -26.0
 
-[node name="front" type="Area2D" parent="hitbox2"]
-collision_layer = 16
-collision_mask = 0
-monitoring = false
-script = ExtResource("4_vxskr")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox2/front"]
-position = Vector2(39, 6)
-shape = SubResource("SegmentShape2D_8j5bs")
-debug_color = Color(0, 0.521569, 0.298039, 0.419608)
-
-[node name="back" type="Area2D" parent="hitbox2"]
-collision_layer = 16
-collision_mask = 0
-monitoring = false
-script = ExtResource("5_01ecy")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox2/back"]
-shape = SubResource("SegmentShape2D_ujvoh")
-debug_color = Color(0.733333, 0.227451, 0.235294, 0.419608)
-
-[node name="zone" type="Node2D" parent="."]
-position = Vector2(75.1694, 75.081)
-
-[node name="def_attack" type="Area2D" parent="zone"]
-collision_layer = 16
-collision_mask = 16
-monitoring = false
-monitorable = false
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zone/def_attack"]
-position = Vector2(-112.169, -30.081)
-scale = Vector2(0.41289, 0.412891)
-polygon = PackedVector2Array(176.161, -63.957, 201.675, -18.0234, 248.732, -12.0156, 275.252, -24.5988, 346.817, -59.0372, 401.867, -83.6361, 418.383, -162.352, 341.312, -182.031, 291.767, -177.112, 235.287, -144.187, 201.675, -126.164, 187.171, -98.3953)
-
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="TimerIdle" to="." method="_on_timer_idle_timeout"]
 [connection signal="timeout" from="Timerwandering" to="." method="_on_timerwandering_timeout"]
 [connection signal="body_exited" from="exitzone" to="." method="_on_exitzone_body_exited"]
 [connection signal="body_entered" from="detectivezone" to="." method="_on_detectivezone_body_entered"]
-[connection signal="area_entered" from="zone/def_attack" to="." method="_on_def_attack_area_entered"]

@@ -20,7 +20,7 @@ func _on_area_2d_area_entered(area):
 		if area.has_method("hit"):
 			area.hit()
 		print(area.owner.name)
-	alrady_hit=false
+	alrady_hit=true
 
 
 

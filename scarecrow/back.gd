@@ -10,6 +10,4 @@ func _ready():
 func _process(_delta):
 	pass
 func hit():
-	$"../../attack".set_text("You hit me in back")
-	
 	owner.take_hit(22)

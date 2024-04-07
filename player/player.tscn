@@ -237,7 +237,7 @@ position = Vector2(22.1086, 53.2266)
 shape = SubResource("RectangleShape2D_c565i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(21.2033, 59.7794)
+position = Vector2(17.6869, 59.2745)
 scale = Vector2(2.21992, 2.21992)
 sprite_frames = SubResource("SpriteFrames_7aawx")
 animation = &"fall"
@@ -297,7 +297,6 @@ offset_bottom = -418.873
 metadata/_edit_group_ = true
 
 [node name="zone" type="Node2D" parent="."]
-visible = false
 position = Vector2(75.1694, 75.081)
 
 [node name="def_attack" type="Area2D" parent="zone"]
@@ -307,9 +306,9 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="zone/def_attack"]
-position = Vector2(-77.0248, -32.5289)
-scale = Vector2(0.657751, 0.657751)
-polygon = PackedVector2Array(13.2652, 11.8549, 61.9041, 51.3712, 150.339, 43.468, 252.038, 7.90326, 296.256, -35.5647, 282.991, -90.8875, 254.331, -111.698, 212.243, -142.259, 123.808, -158.065, -53.0607, -146.21, 8.84348, -90.8875, 0, 0)
+position = Vector2(-168.026, 11.8549)
+scale = Vector2(0.803215, 0.803215)
+polygon = PackedVector2Array(176.161, -63.957, 201.675, -18.0234, 248.732, -12.0156, 275.252, -24.5988, 346.817, -59.0372, 401.867, -83.6361, 418.383, -162.352, 341.312, -182.031, 291.767, -177.112, 235.287, -144.187, 201.675, -126.164, 187.171, -98.3953)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

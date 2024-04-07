@@ -11,5 +11,5 @@ func _process(_delta):
 	pass
 
 func hit():
-	$"../../attack".set_text("You hit me in front")
+	
 	owner.take_hit(12)
