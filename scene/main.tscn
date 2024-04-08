@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://12foa3wesyyn" path="res://texture/world/Assets/tileset.png" id="4_jtqi3"]
 [ext_resource type="Texture2D" uid="uid://qhgyyv2vpc1w" path="res://texture/world/Assets/props.png" id="4_smk1p"]
 [ext_resource type="PackedScene" uid="uid://w60b2c4tbxa3" path="res://enemy/skilet.tscn" id="6_8wd6x"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="Texture2D" path="res://texture/world/Assets/background_layer_1.png" id="8_518bm"]
+[ext_resource type="Texture2D" path="res://texture/world/Assets/background_layer_2.png" id="9_k4a8j"]
+[ext_resource type="Texture2D" path="res://texture/world/Assets/background_layer_3.png" id="10_2otab"]
+>>>>>>> Stashed changes
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tijw0"]
 texture = ExtResource("4_smk1p")
