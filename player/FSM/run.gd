@@ -28,7 +28,7 @@ func inner_physics_process(_delta):
 	elif player.velocity.x<0:
 		player.animation.play("run")
 		player.animation.set_flip_h(true)
-	if player.taken_hit==true:
+	if player.take_hit==true:
 		state_machine.change_to("take_hit")
 
 

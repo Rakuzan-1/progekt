@@ -19,6 +19,3 @@ func inner_process(_delte: float):
 		state_machine.change_to("Fly",{do_jump = true})
 	if Input.is_action_just_pressed("Attack"):
 		state_machine.change_to("Attack")
-	if player.taken_hit==true:
-		state_machine.change_to("take_hit")
-		
